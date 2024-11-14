@@ -16,11 +16,11 @@ export default function HomePage() {
       <header className="container mx-auto py-6 px-4">
         <nav className="flex justify-between items-center">
           <Link href="/" className="text-3xl font-bold text-neon-blue">Gaming Party Arena</Link>
-          <div className="space-x-4">
+          <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
             <Button variant="outline" className="bg-neon-blue text-black hover:bg-neon-blue/80 hover:text-white border-2 border-neon-blue font-bold">
               <Link href="/login">Logowanie</Link>
             </Button>
-            <Button variant="outline mb-2" className="bg-neon-pink text-white hover:bg-neon-pink/80 border-2 border-neon-pink font-bold">
+            <Button variant="outline" className="bg-neon-pink text-white hover:bg-neon-pink/80 border-2 border-neon-pink font-bold">
               <Link href="/register">Rejestracja</Link>
             </Button>
           </div>
