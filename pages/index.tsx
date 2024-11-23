@@ -21,6 +21,8 @@ export default function HomePage() {
       console.error('Błąd podczas zapisywania e-maila:', error)
     } else {
       console.log('E-mail zapisany:', data)
+      setModalContent('Email dodany do bazy. Dziękujemy.')
+      setIsModalOpen(true)
     }
   }
 
