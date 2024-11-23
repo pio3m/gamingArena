@@ -5,10 +5,21 @@ import { Gamepad2, Trophy, Users, Zap, ChevronRight } from 'lucide-react'
 
 export default function HomePage() {
   const [email, setEmail] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalContent, setModalContent] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Rejestracja z adresem email:', email)
+  }
+
+  const handleButtonClick = (content: string) => {
+    setModalContent(content)
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
   }
 
   return (
@@ -86,8 +97,8 @@ export default function HomePage() {
           <CardContent>
           <ul className="space-y-4">
   {[
-    { title: "FC 25 - Turniej Inauguracyjny", date: "30.11.2024", location: "Dom Pobytu Przyszłość, Sierpc", prize: "Nagrody rzeczowe i upominki" },
-    { title: "FC 25 - Liga eSportu z Mosir", date: "06.12.2024", location: "MOSiR, Sierpc", prize: "Do ogłoszenia" },
+    { title: "FC 25 - Turniej Inauguracyjny", date: "30.11.2024", location: "Dom Pobytu Przyszłość, Sierpc", prize: "Nagrody rzeczowe i upominki", description: "Regulamin na stronie sierpcgamingparty.pl" },
+    { title: "FC 25 - Liga eSportu z Mosir", date: "06.12.2024", location: "MOSiR, Sierpc", prize: "Do ogłoszenia", description: "Szczegóły wkrótce" },
   ].map((tournament, index) => (
     <li key={index} className="flex justify-between items-center bg-white/5 p-4 rounded-lg">
       <div>
@@ -96,7 +107,7 @@ export default function HomePage() {
         {tournament.location && <p className="text-sm text-gray-300">Lokalizacja: {tournament.location}</p>}
         <p className="text-sm text-gray-300">Pula nagród: {tournament.prize}</p>
       </div>
-      <Button variant="outline" className="text-neon-blue hover:bg-neon-blue hover:text-black">
+      <Button variant="outline" className="text-neon-blue hover:bg-neon-blue hover:text-black" onClick={() => handleButtonClick(tournament.description)}>
         Szczegóły <ChevronRight className="ml-2 h-4 w-4" />
       </Button>
     </li>
@@ -110,6 +121,16 @@ export default function HomePage() {
             </Button>
           </CardFooter>
         </Card>
+
+        {isModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <h2 className="text-xl font-bold">Informacje</h2>
+              <p className="text-black">{modalContent}</p>
+              <button onClick={closeModal} className="mt-4 bg-neon-blue text-white px-4 py-2 rounded">Zamknij</button>
+            </div>
+          </div>
+        )}
       </main>
 
       <footer className="container mx-auto py-6 px-4 text-center text-gray-400">
