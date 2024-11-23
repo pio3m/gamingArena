@@ -2,15 +2,26 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Button, Input, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui'
 import { Gamepad2, Trophy, Users, Zap, ChevronRight } from 'lucide-react'
+import { supabase } from '@/components/supabaseClient'
 
 export default function HomePage() {
   const [email, setEmail] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Rejestracja z adresem email:', email)
+
+    const { data, error } = await supabase
+      .from('emails')
+      .insert([{ email }])
+
+    if (error) {
+      console.error('Błąd podczas zapisywania e-maila:', error)
+    } else {
+      console.log('E-mail zapisany:', data)
+    }
   }
 
   const handleButtonClick = (content: string) => {
