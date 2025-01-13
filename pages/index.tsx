@@ -75,6 +75,51 @@ export default function HomePage() {
 />
  </div>
         </div>
+        <Card className="w-full max-w-4xl mx-auto bg-white/10 backdrop-blur-md border-neon-blue">
+          <CardHeader>
+            <CardTitle className="text-2xl text-center text-neon-blue">Nasze Turnieje</CardTitle>
+          </CardHeader>
+          <CardContent>
+          <ul className="space-y-4">
+          {[ 
+    { title: "FC 25 - Turniej PS5 dla Szkół Podstawowych", date: "25.01.2025", location: "Płock, dni otwarte MTI", prize: "Nagrody rzeczowe dla 3 najlepszych w turnieju. Pula 1000 zł", form: "https://forms.gle/h5v86wfvdAE6fm799",  description: "Liczba miejsc ograniczona do 24 osób, decyduje termin zapisu, brak wpisowego." },
+    { title: "FC 25 - Turniej PS5 dla Szkół Średnich", date: "25.01.2025", location: "Płock, dni otwarte MTI", prize: "Nagrody rzeczowe dla 3 najlepszych w turnieju. Pula 1000 zł", form: "https://forms.gle/h5v86wfvdAE6fm799",description: "Liczba miejsc ograniczona do 24 osób, decyduje termin zapisu, brak wpisowego." },
+    { title: "FC 25 - Turniej Inauguracyjny", date: "30.11.2024", location: "Dom Pobytu Przyszłość, Sierpc", prize: "Nagrody rzeczowe i upominki", description: "Regulamin na stronie sierpcgamingparty.pl" },
+    { title: "FC 25 - Liga eSportu z Mosir", date: "06.12.2024", location: "MOSiR, Sierpc", prize: "Do ogłoszenia", description: "Szczegóły wkrótce" },
+   
+  ].map((tournament, index) => (
+    <li key={index} className="flex justify-between items-center bg-white/5 p-4 rounded-lg">
+      <div>
+        <h3 className="font-bold text-neon-pink">{tournament.title}</h3>
+        <p className="text-sm text-gray-300">Data: {tournament.date}</p>
+        {tournament.location && <p className="text-sm text-gray-300">Lokalizacja: {tournament.location}</p>}
+        <p className="text-sm text-gray-300">Nagrody: {tournament.prize}</p>
+      </div>
+      {tournament.form && (
+        <Link href={tournament.form} passHref>
+          <Button variant="outline" className="text-neon-blue hover:bg-neon-blue hover:text-black">
+            Zapisz się
+          </Button>
+        </Link>
+      )}
+      <Button variant="outline" className="text-neon-blue hover:bg-neon-blue hover:text-black" onClick={() => handleButtonClick(tournament.description)}>
+        Szczegóły <ChevronRight className="ml-2 h-4 w-4" />
+      </Button>
+     
+    </li>
+  ))}
+</ul>
+          </CardContent>
+          {/* <CardFooter className="flex justify-center">
+            <Button variant="outline" className="text-neon-pink hover:bg-neon-pink hover:text-white">
+              Zobacz wszystkie turnieje
+            </Button>
+          </CardFooter> */}
+        </Card>
+       
+       
+        <span className="m-2.5" />
+
 
         <Card className="w-full max-w-md mx-auto bg-white/10 backdrop-blur-md border-neon-blue mb-12">
           <CardHeader>
@@ -103,37 +148,7 @@ export default function HomePage() {
           </CardFooter>
         </Card>
 
-        <Card className="w-full max-w-4xl mx-auto bg-white/10 backdrop-blur-md border-neon-blue">
-          <CardHeader>
-            <CardTitle className="text-2xl text-center text-neon-blue">Najblisze Turnieje</CardTitle>
-          </CardHeader>
-          <CardContent>
-          <ul className="space-y-4">
-  {[
-    { title: "FC 25 - Turniej Inauguracyjny", date: "30.11.2024", location: "Dom Pobytu Przyszłość, Sierpc", prize: "Nagrody rzeczowe i upominki", description: "Regulamin na stronie sierpcgamingparty.pl" },
-    { title: "FC 25 - Liga eSportu z Mosir", date: "06.12.2024", location: "MOSiR, Sierpc", prize: "Do ogłoszenia", description: "Szczegóły wkrótce" },
-  ].map((tournament, index) => (
-    <li key={index} className="flex justify-between items-center bg-white/5 p-4 rounded-lg">
-      <div>
-        <h3 className="font-bold text-neon-pink">{tournament.title}</h3>
-        <p className="text-sm text-gray-300">Data: {tournament.date}</p>
-        {tournament.location && <p className="text-sm text-gray-300">Lokalizacja: {tournament.location}</p>}
-        <p className="text-sm text-gray-300">Pula nagród: {tournament.prize}</p>
-      </div>
-      <Button variant="outline" className="text-neon-blue hover:bg-neon-blue hover:text-black" onClick={() => handleButtonClick(tournament.description)}>
-        Szczegóły <ChevronRight className="ml-2 h-4 w-4" />
-      </Button>
-    </li>
-  ))}
-</ul>
-
-          </CardContent>
-          <CardFooter className="flex justify-center">
-            <Button variant="outline" className="text-neon-pink hover:bg-neon-pink hover:text-white">
-              Zobacz wszystkie turnieje
-            </Button>
-          </CardFooter>
-        </Card>
+       
 
         {isModalOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -147,7 +162,7 @@ export default function HomePage() {
       </main>
 
       <footer className="container mx-auto py-6 px-4 text-center text-gray-400">
-        <p>&copy; 2024 Gaming Party. Wszelkie prawa zastrzeżone.</p>
+        <p>&copy; 2025 Gaming Party. Wszelkie prawa zastrzeżone.</p>
       </footer>
     </div>
   )
