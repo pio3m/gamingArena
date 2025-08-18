@@ -2,29 +2,29 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Button, Input, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui'
 import { Gamepad2, Trophy, Users, Zap, ChevronRight } from 'lucide-react'
-import { supabase } from '@/components/supabaseClient'
+// import { supabase } from '@/components/supabaseClient'
 
 export default function HomePage() {
   const [email, setEmail] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Rejestracja z adresem email:', email)
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   console.log('Rejestracja z adresem email:', email)
 
-    const { data, error } = await supabase
-      .from('emails')
-      .insert([{ email }])
+  //   const { data, error } = await supabase
+  //     .from('emails')
+  //     .insert([{ email }])
 
-    if (error) {
-      console.error('Błąd podczas zapisywania e-maila:', error)
-    } else {
-      console.log('E-mail zapisany:', data)
-      setModalContent('Email dodany do bazy. Dziękujemy.')
-      setIsModalOpen(true)
-    }
-  }
+  //   if (error) {
+  //     console.error('Błąd podczas zapisywania e-maila:', error)
+  //   } else {
+  //     console.log('E-mail zapisany:', data)
+  //     setModalContent('Email dodany do bazy. Dziękujemy.')
+  //     setIsModalOpen(true)
+  //   }
+  // }
 
   const handleButtonClick = (content: string) => {
     setModalContent(content)
@@ -121,14 +121,14 @@ export default function HomePage() {
         <span className="m-2.5" />
 
 
-        <Card className="w-full max-w-md mx-auto bg-white/10 backdrop-blur-md border-neon-blue mb-12">
-          <CardHeader>
+        {/* <Card className="w-full max-w-md mx-auto bg-white/10 backdrop-blur-md border-neon-blue mb-12"> */}
+          {/* <CardHeader>
             <CardTitle className="text-2xl text-center text-neon-pink">Zapisz się na newsletter</CardTitle>
             <CardDescription className="text-center text-gray-300">
               Wysyłamy informacje o nadchodzących turniejach. <br></br> Miej wpływ na to w co będziemy grali!
             </CardDescription>
-          </CardHeader>
-          <CardContent>
+          </CardHeader> */}
+          {/* <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <Input
                 type="email"
@@ -142,11 +142,11 @@ export default function HomePage() {
                 Zapisz się
               </Button>
             </form>
-          </CardContent>
-          <CardFooter className="text-center text-sm text-gray-400">
+          </CardContent> */}
+          {/* <CardFooter className="text-center text-sm text-gray-400">
             Rejestrując się, akceptujesz nasz Regulamin i Politykę Prywatności
-          </CardFooter>
-        </Card>
+          </CardFooter> */}
+        {/* </Card> */}
 
        
 
