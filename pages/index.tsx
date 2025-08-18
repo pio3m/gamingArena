@@ -1,20 +1,24 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui'
-import { CheckCircle, MousePointerClick, Share2 } from 'lucide-react'
+import Link from "next/link";
+import { Button } from "@/components/ui";
+import { CheckCircle, MousePointerClick, Share2 } from "lucide-react";
 
-const CTA_URL = 'https://bom.mazovia.pl/glosowanie'
+const CTA_URL = "https://bom.mazovia.pl/glosowanie";
 
 export default function Home() {
   const shareText =
-    'Głosuję na BOM #420 – Mistrzostwa Mazowsza – Gaming Party. Dołącz! https://bom.mazovia.pl #BOM420 #GamingParty #Mazowsze'
+    "Głosuję na BOM #420 – Mistrzostwa Mazowsza – Gaming Party. Dołącz! https://bom.mazovia.pl #BOM420 #GamingParty #Mazowsze";
 
   async function handleShare() {
     try {
       if (navigator.share) {
-        await navigator.share({ title: 'BOM #420 – Gaming Party', text: shareText, url: CTA_URL })
+        await navigator.share({
+          title: "BOM #420 – Gaming Party",
+          text: shareText,
+          url: CTA_URL,
+        });
       } else {
-        await navigator.clipboard.writeText(shareText)
-        alert('Skopiowano treść udostępnienia – wklej w swoje social media!')
+        await navigator.clipboard.writeText(shareText);
+        alert("Skopiowano treść udostępnienia – wklej w swoje social media!");
       }
     } catch {}
   }
@@ -22,34 +26,61 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="text-center max-w-3xl mx-auto px-4">
-      <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-pink leading-[1.4] md:leading-[1.3] pb-1">
-    Mistrzostwa Mazowsza w grach komputerowych
-  </h1>
-        <p className="text-lg md:text-2xl mt-4">
-          Twój głos = e-sport na najwyższym poziomie na Mazowszu
-        </p>
-        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Link href={CTA_URL} target="_blank" rel="noopener noreferrer">
-            <Button className="h-14 px-8 text-lg bg-neon-pink hover:bg-neon-pink/80">
-              Zagłosuj na inicjatywę 420
-            </Button>
-          </Link>
-          <Button onClick={handleShare} variant="outline" className="h-14 px-8 text-lg text-neon-blue hover:bg-neon-blue hover:text-black">
-            Udostępnij znajomym
-          </Button>
-        </div>
+     {/* HERO — wersja kompaktowa */}
+    <section className="text-center px-4 pt-8">
+      <h1 className="mx-auto max-w-3xl text-4xl md:text-6xl font-extrabold tracking-tight
+                    leading-[1.12] md:leading-[1.1] pb-0.5 text-transparent">
+        <span className="bg-clip-text bg-gradient-to-r from-neon-blue to-neon-pink">
+          Mistrzostwa Mazowsza w grach komputerowych
+        </span>
+      </h1>
+
+    
+
+      <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a
+          href="https://bom.mazovia.pl"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg inline-flex items-center justify-center
+                    rounded-md bg-neon-pink hover:bg-neon-pink/80 text-white shadow"
+        >
+          Zagłosuj na inicjatywę 420
+        </a>
+        <button
+          onClick={handleShare}
+          className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-md border border-white/20
+                    text-neon-blue hover:bg-neon-blue hover:text-black transition"
+        >
+          Udostępnij znajomym
+        </button>
+      </div>
+    </section>
+
+
+      <section className="mt-8 grid sm:grid-cols-3 gap-4">
+        {[
+          {
+            t: "1. Wejdź na BOM",
+            d: "Otwórz stronę Budżetu Obywatelskiego Mazowsza.",
+          },
+          { t: "2. Wybierz #420", d: "Mistrzostwa Mazowsza – Gaming Party." },
+          {
+            t: "3. Potwierdź + udostępnij",
+            d: "Zachęć znajomych do głosowania.",
+          },
+        ].map((s, i) => (
+          <div
+            key={i}
+            className="rounded-xl bg-white/8 hover:bg-white/10 transition shadow-[0_1px_0_0_rgba(255,255,255,.08)] border border-white/10 p-5 text-center"
+          >
+            <h3 className="font-semibold">{s.t}</h3>
+            <p className="text-sm text-gray-200 mt-1">{s.d}</p>
+          </div>
+        ))}
       </section>
 
-      {/* 3 KROKI – JAK ZAGŁOSOWAĆ */}
-      <section className="mt-10 grid sm:grid-cols-3 gap-3">
-        <Step icon={<MousePointerClick />} title="1. Wejdź na BOM" text="Otwórz stronę Budżetu Obywatelskiego Mazowsza." />
-        <Step icon={<CheckCircle />} title="2. Wybierz #420" text="Mistrzostwa Mazowsza – Gaming Party." />
-        <Step icon={<Share2 />} title="3. Potwierdź + udostępnij" text="Zachęć znajomych do głosowania." />
-      </section>
-
-      {/* DLACZEGO WARTO */}
-      <section className="mt-8 bg-white/10 rounded-xl p-5">
+      <section className="mt-8 rounded-xl p-6 border border-white/10 bg-gradient-to-br from-white/10 to-white/5">
         <h2 className="text-2xl font-bold mb-3">Dlaczego warto?</h2>
         <ul className="space-y-2 text-gray-100">
           <li>• Największe e-sportowe wydarzenie na Mazowszu</li>
@@ -59,16 +90,17 @@ export default function Home() {
         </ul>
       </section>
 
-      {/* WIDEO PROMO */}
-      <section className="mt-8">
-        <div className="aspect-video max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg">
-          <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/YOUTUBE_ID_HERE"
-            title="Promo – Mistrzostwa Mazowsza – Gaming Party"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
+      <section className="mt-10">
+        <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+          <div className="aspect-video">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/YOUTUBE_ID_HERE"
+              title="Promo – Mistrzostwa Mazowsza – Gaming Party"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
         </div>
       </section>
 
@@ -92,10 +124,18 @@ export default function Home() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-function Step({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
+function Step({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}) {
   return (
     <div className="bg-white/10 p-4 rounded-lg text-center">
       <div className="mx-auto mb-2 h-10 w-10 flex items-center justify-center rounded-full bg-white/15">
@@ -104,5 +144,5 @@ function Step({ icon, title, text }: { icon: React.ReactNode; title: string; tex
       <h3 className="font-semibold">{title}</h3>
       <p className="text-sm text-gray-200 mt-1">{text}</p>
     </div>
-  )
+  );
 }
