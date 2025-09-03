@@ -17,17 +17,12 @@ function HeroSection() {
       </p>
 
       <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <Link href="https://bom.mazovia.pl" target="_blank">
+        <Link href="https://bom.mazovia.pl/projekty?nr=420" target="_blank">
           <Button className="h-12 md:h-14 px-8 text-lg bg-neon-pink hover:bg-neon-pink/80 text-white font-bold">
             Zagłosuj na inicjatywę 420
           </Button>
         </Link>
-        <Button
-          variant="outline"
-          className="h-12 md:h-14 px-8 text-lg text-neon-blue hover:bg-neon-blue hover:text-black"
-        >
-          Udostępnij znajomym
-        </Button>
+        
       </div>
 
       {/* Wideo promo */}
@@ -55,8 +50,8 @@ function HowToVote() {
     },
     {
       icon: <CheckCircle className="h-10 w-10 text-neon-pink" />,
-      title: "Wybierz inicjatywę #420",
-      text: "„Gaming Party – Mistrzostwa Mazowsza w grach komputerowych”",
+      title: "Wybierz inicjatywę 420 - Gaming Party ",
+      text: "dodatkowo organizujemy również upamiętnienie powstania warszawskiego inicjatywa 578, którą można wybrać również w jednym głosowaniu",
     },
     {
       icon: <Share2 className="h-10 w-10 text-green-400" />,
@@ -84,6 +79,32 @@ function HowToVote() {
   )
 }
 
+// === ZDJĘCIA ===
+function ImagesSection() {
+  return (
+    <section className="mt-12 px-4 flex flex-col md:flex-row justify-center items-center gap-8">
+      <div className="flex-1 flex justify-center">
+        <Link href="https://bom.mazovia.pl/projekty?nr=420" target="_blank">
+          <img
+            src="/images/gaming.png"
+            alt="Gaming"
+            className="rounded-lg shadow-lg object-cover w-full max-w-xl aspect-[16/9]"
+          />
+        </Link>
+      </div>
+      <div className="flex-1 flex justify-center">
+         <Link href="https://bom.mazovia.pl/projekty?nr=578" target="_blank">
+          <img
+            src="/images/powstanie.jpg"
+            alt="Powstanie"
+            className="rounded-lg shadow-lg object-cover w-full max-w-xl aspect-[16/9]"
+          />
+        </Link>
+      </div>
+    </section>
+  )
+}
+
 // === DLA KAŻDEGO ===
 function MiddleSection() {
   return (
@@ -101,12 +122,8 @@ function MiddleSection() {
       </p>
 
       <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
-        <Link href="https://forms.gle/TWOJ_LINK" target="_blank">
-          <Button className="h-12 px-6 bg-neon-blue hover:bg-neon-blue/80 text-black font-semibold">
-            Zgłoś swoją grę
-          </Button>
-        </Link>
-        <Link href="https://bom.mazovia.pl" target="_blank">
+       
+        <Link href="https://bom.mazovia.pl/projekty?nr=420" target="_blank">
           <Button
             variant="outline"
             className="h-12 px-6 text-neon-pink hover:bg-neon-pink hover:text-white"
@@ -135,6 +152,7 @@ export default function Home() {
       <HeroSection />
       <HowToVote />
       <MiddleSection />
+      <ImagesSection />
       <Footer />
     </>
   )

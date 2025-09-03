@@ -5,8 +5,6 @@ import { useRouter } from 'next/router'
 const tabs = [
   { href: '/', label: 'Start' },
   { href: '/turnieje', label: 'Turnieje' },
-  { href: '/o-nas', label: 'O nas' },
-  { href: '/konkurs', label: 'Konkurs' },
 ]
 
 export default function NavBar() {
